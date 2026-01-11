@@ -61,14 +61,14 @@ def get_powers():
 def get_power(id):
     power = Power.query.get(id)
 
-        if not power:
-            return jsonify({"error": "Power not found"}), 404
+    if not power:
+        return jsonify({"error": "Power not found"}), 404
 
-        return jsonify(
-            power.to_dict(only=("id", "name", "description"))
-        ), 200
+    return jsonify(
+        power.to_dict(only=("id", "name", "description"))
+    ), 200
         
-@app.routes("/powers/<int:id>", methods=["PATCH"])
+@app.route("/powers/<int:id>", methods=["PATCH"])
 def update_power(id):
     power = Power.query.get(id)
     if not power:
